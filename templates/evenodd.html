@@ -1,0 +1,17 @@
+{% include 'header.html'%}
+<div class="m-3">
+<form method="post">
+    {% csrf_token %}
+    {% if error %}
+    <div class="alert alert-danger" role="alert">
+        Please Enter The Value</div>
+    {% endif %}
+    <h1>Even Odd</h1>
+    <lable>Num</lable>
+    <input type="text" name ='num' class="form-control" />
+    <br/>
+    <button type="submit" class="btn btn-primary">EvenOdd</button>
+    <br/>
+    <lable>Output</lable>
+    <input type="text"  value="{{result}}" class="form-control" />
+</div>

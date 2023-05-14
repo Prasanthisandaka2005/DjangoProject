@@ -1,0 +1,26 @@
+{% include 'header.html'%}
+
+<div class="container">
+    <div class="row">
+        <div class="col-12 m-3">
+            <h1>Calculator</h1>
+            <form method="post">
+                {% csrf_token %%}
+            <lable>Value1</lable>
+            <input type="text" name="value-1" value="{{value1}}" class="form-control mb-3" />
+            <lable>Select Operator</lable>
+            <select name="options" class="mb-3 form-control">
+                <option value="+">+</option>
+                <option value="-">-</option>
+                <option value="*">*</option>
+                <option value="/">/</option>
+            </select>
+            <lable>Value2</lable>
+            <input type="text" name="value-2"  value="{{value2}}" class="form-control" />
+            <button type="submit" class="btn btn-primary">Calculate</button>
+            <br>
+            <lable>Output</lable>
+            <input type="text" name="output" value="{{output}}" class="form-control" />
+        </div>
+    </div>
+</div>
