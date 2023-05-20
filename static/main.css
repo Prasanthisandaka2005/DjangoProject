@@ -105,6 +105,30 @@ h1{
 input{
     width: 500px !important;
 }
+.popular-items-text {
+    text-align: center;
+    color: #062d30;
+    font-family: 'Aclonica', sans-serif;
+    font-size: 24px;
+    font-weight: 900;
+    padding-top: 20px;
+}
+.popular-items {
+    border-radius: 16px;
+    background-color: aliceblue;
+}
+.popular-items-image {
+    border-radius: 10px;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0px;
+    height: 230px;
+    cursor: pointer;
+    opacity: 0.85;
+    transition: 0.5s;
+}
+.popular-items-image:hover {
+    opacity: 1;
+}
 
 @keyframes bounce {
 
@@ -130,7 +154,7 @@ input{
 
 @media (min-width: 768px) {
     .carousel-image {
-        height: 500px;
+        height: 350px;
     }
 
 

@@ -3,6 +3,7 @@ from django.shortcuts import render,redirect
 from .forms import usersForm 
 from django.contrib.auth.models import User
 from django.contrib import auth 
+from services.models import Service
 
 
 
@@ -39,9 +40,16 @@ def submitform(request) :
 
 
 def homePage(request):
-    if request.method=='GET':
-        output = request.GET.get('output')
-    return render(request,"index.html",{'output':output})
+    servicesData = Service.objects.all()
+    # for a in servicesData:
+    #     print(a.service_icon)
+    # print(Service)
+    data = {
+        'serviceData':servicesData
+    }
+
+    
+    return render(request,"index.html",data)
 
 def userForm(request):
     final_ans=0
