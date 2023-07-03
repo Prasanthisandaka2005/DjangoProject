@@ -23,11 +23,13 @@ urlpatterns = [
     path('course/<courseid>',views.courseDetails),
     path('home',views.homePage,name='home'),
     path('userform',views.userForm,name='form'),
-    path('submitform/',views.submitform,name='submitform'),
-    path('calculator/',views.calculator),
+    # path('submitform/',views.submitform,name='submitform'),
+    path('calculator/',views.calculator,name='calci'),
     path('evenodd/',views.evenodd),
     path('',views.signupview,name='signup'),
     path('login',views.Login,name='login'),
+    path('newDetails/<slug>',views.newDetails),
+
     # path('next',views.Next,name='next'),
 
 ]

@@ -4,8 +4,8 @@ from .forms import usersForm
 from django.contrib.auth.models import User
 from django.contrib import auth 
 from services.models import Service
-
-
+from news.models import News
+from django.core.paginator import Paginator
 
 
 def Project(request):
@@ -40,16 +40,36 @@ def submitform(request) :
 
 
 def homePage(request):
+    newsData = News.objects.all()
     servicesData = Service.objects.all()
+    paginator = Paginator(servicesData,2)
+    page_number = request.GET.get('page')
+    servicesDatafinal = paginator.get_page(page_number)
+
+
+    if request.method == "GET":
+        st=request.GET.get('servicename')
+        if st!=None:
+            servicesData = Service.objects.filter(service_title__icontains=st)
+            
     # for a in servicesData:
     #     print(a.service_icon)
     # print(Service)
     data = {
-        'serviceData':servicesData
+        'serviceData':servicesDatafinal,
+        'newsData':newsData
     }
 
     
     return render(request,"index.html",data)
+
+def newDetails(request,slug):
+        newsDetails = News.objects.get(news_slug=slug)
+        data = {
+            'newsDetails' :newsDetails
+        }
+        return render(request,"calculator.html",data)
+
 
 def userForm(request):
     final_ans=0

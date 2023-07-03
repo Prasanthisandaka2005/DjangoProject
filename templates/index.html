@@ -1,5 +1,12 @@
 {% include "header.html" %}
 
+<marquee onmouseover="stop()" onmouseout = "start()"> 
+  {% for i in newsData %}
+  
+  <a href="/newDetails/{{i.news_slug}}">{{i.news_title}}</a> &nbsp;&nbsp;
+  {% endfor %}
+</marquee>
+
 
     <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
   <div class="carousel-inner">
@@ -29,15 +36,25 @@
     <button class="btn btn-info">Get Started</button>
     </div>
     </div>
+    <div class="row">
+    <div class="col-12">
+    <form method="get">
+    <input type="text" placeholder="Search" class="m-4 mb-0 form-control" value="" name="servicename"/>
+    <input type="submit" value="Search" />
+    </form>
+  </div>
+</div>
     <div class="container-fluid">
       <div class="row">
         {% for n in serviceData %}
           <div class="col-12 col-md-6 col-lg-3">
                 <div class="popular-items shadow mb-3 mt-4">
                     <img class="popular-items-image w-100" src="{{n.service_icon}}" />
-                    <p class="popular-items-text pb-4">{{n.service_title}}</p>
+                    <p class="popular-items-text pb-4">{{n.service_des}}</p>
                 </div>
             </div>
+            {% empty %}
+            No data found 
             {% endfor %}
             {% comment %} <div class="col-12 col-md-6 col-lg-3">
                 <div class="popular-items shadow mb-3 mt-4">
@@ -48,6 +65,20 @@
         
         </div>
       </div>
-
-
     </div>
+
+<nav aria-label="...">
+  <ul class="pagination">
+    <li class="page-item ">
+      <a class="page-link" href="#" tabindex="-1">Previous</a>
+    </li>
+    <li class="page-item"><a class="page-link" href="#">1</a></li>
+    <li class="page-item ">
+      <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
+    </li>
+    <li class="page-item"><a class="page-link" href="#">3</a></li>
+    <li class="page-item">
+      <a class="page-link" href="#">Next</a>
+    </li>
+  </ul>
+</nav>
