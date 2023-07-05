@@ -1,0 +1,20 @@
+{% include 'header.html'%}
+<div class="container-fluid mt-4">
+    <h2 class="pb-3 span">Want to upload images</h2>
+    <div class="row">
+        <div class="col-12">
+    <form action="" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+    {{form.as_p}}
+    <button type="submit" class="btn btn-info mb-4 ">Upload</button>
+    </form>
+</div>
+<div class="row">
+    {% for x in img%}
+    <div class="col-4">
+        <div class="card">
+    <img src="{{x.photo.url}}" class="img-fluid"/>
+</div>
+</div>
+    {% endfor %}
+</div>

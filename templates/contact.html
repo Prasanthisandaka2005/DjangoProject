@@ -1,0 +1,14 @@
+{% include 'header.html'%}
+<div class="m-3">
+<form method="post" action="" id="contact" role="form" novalidata="novalidata" class="bv-form">
+    {% csrf_token %}
+    <div class="form-group first-form boootm-space">
+        <input class="form-control" type="text" name="name" id="name" value="" required="" placeholder="Name"/>
+    </div>
+    <div class="form-group first-form boootm-space">
+        <input class="form-control" type="text" name="email" id="email" value="" required="" placeholder="email"/>
+    </div>
+    <div class="form-group first-form boootm-space">
+        <input class="form-control" type="tel" name="phone" id="phone" value="" required="" placeholder="Phone"/>
+    </div>
+</div>

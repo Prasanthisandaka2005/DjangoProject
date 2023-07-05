@@ -1,9 +1,19 @@
 {% include 'header.html'%}
 <div class="container">
-    <div class="row">
-        <div class="col-12 m-3">
+    <div class="row mt-4">
+        <div class="col-6">
             <h1>{{newsDetails.news_title}}</h1>
             <p>{{newsDetails.news_desc | safe}}</p>
+        </div>
+        <div class="col-6">
+        {% if newsDetails.news_img != NULL%}
+            <img src="/media/{{newsDetails.news_img}}" class="img-fluid"/>
+        </div>
+        {% endif%}
+    </div>
+    
+    {% comment %} <div class="row">
+        <div class="col-12">
             <form method="post">
                 {% csrf_token %%}
             <lable>Value1</lable>
@@ -22,5 +32,5 @@
             <lable>Output</lable>
             <input type="text" name="output" value="{{output}}" class="form-control" />
         </div>
-    </div>
+    </div> {% endcomment %}
 </div>

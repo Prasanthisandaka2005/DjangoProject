@@ -29,21 +29,22 @@
     <span class="sr-only">Next</span>
   </a>
 </div>
-<div class= "intro pl-3 pt-5">
+<div class= "pl-3 pt-5">
     <div class="text-center">
-    <h3><span class="span">Welcome</span></h3>
+    <h1><span class="span">Welcome</span></h1>
     <h3 class="para">Plan your trip wherever you want to go</h3>
     <button class="btn btn-info">Get Started</button>
     </div>
     </div>
-    <div class="row">
-    <div class="col-12">
+    <div class= "pl-3 pt-5">
+      <h3 class="span">Search for places</h3>
     <form method="get">
-    <input type="text" placeholder="Search" class="m-4 mb-0 form-control" value="" name="servicename"/>
-    <input type="submit" value="Search" />
-    </form>
-  </div>
-</div>
+      <div class="d-flex">
+    <input type="text" placeholder="Search Places" class="form-control" value="" name="servicename"/>
+    <button class="btn btn-primary ml-2" type="search">Search</button>
+      </div>
+  </form>
+    </div>
     <div class="container-fluid">
       <div class="row">
         {% for n in serviceData %}
@@ -68,17 +69,28 @@
     </div>
 
 <nav aria-label="...">
-  <ul class="pagination">
+  <ul class="pagination ml-4 ">
+    {% if serviceData.has_previous %}
     <li class="page-item ">
-      <a class="page-link" href="#" tabindex="-1">Previous</a>
+      <a class="page-link" href="/home?page=1" >First</a>
     </li>
-    <li class="page-item"><a class="page-link" href="#">1</a></li>
     <li class="page-item ">
-      <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
+      <a class="page-link" href="?page={{serviceData.previous_page_number}}" tabindex="-1">Previous</a>
     </li>
-    <li class="page-item"><a class="page-link" href="#">3</a></li>
+    {% endif %}
+    {%for n in totalPagelist%}
+    <li class="page-item ">
+      <a class="page-link" href="?page={{n}}">{{n}}<span class="sr-only">(current)</span></a>
+    </li>
+    {% endfor %}
+    {% if serviceData.has_next %}
     <li class="page-item">
-      <a class="page-link" href="#">Next</a>
+      <a class="page-link" href="?page={{serviceData.next_page_number}}">Next</a>
     </li>
+    <li class="page-item">
+      <a class="page-link" href="?page={{lastpage}}">Last</a>
+    </li>
+    {% endif %}
+
   </ul>
 </nav>

@@ -63,16 +63,10 @@ h1{
 
 .span{
     color: rgb(54, 21, 174);
-    font-size: 35px;
     font-family: 'Aclonica';
 }
 .carousel-image{
     height: 500px;
-}
-.intro{
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
 }
 .logo{
     height: 35px;

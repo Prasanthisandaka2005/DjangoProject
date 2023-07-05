@@ -4,15 +4,18 @@ from .forms import usersForm
 from django.contrib.auth.models import User
 from django.contrib import auth 
 from services.models import Service
-from news.models import News
+from news.models import News,Image
 from django.core.paginator import Paginator
-
+from django.core.mail import send_mail,EmailMultiAlternatives
+from news.forms import ImageForm
 
 def Project(request):
     return HttpResponse("<b>Hello World</b>")
 
 def courseDetails(request,courseid):
     return HttpResponse(courseid)
+
+
 
 def Course(request):
     return HttpResponse("Welcome to<b> FirstProject</b>")
@@ -40,24 +43,37 @@ def submitform(request) :
 
 
 def homePage(request):
+
+
+    # send_mail(
+    #     'Testing Mail',
+    #     'Here is the message',
+    #     'prasanthisandaka05@gmail.com',
+    #     ['prasanthisandaka2005@gmail.com'],
+    #     fail_silently=False,
+
+    # )
     newsData = News.objects.all()
     servicesData = Service.objects.all()
-    paginator = Paginator(servicesData,2)
+    paginator = Paginator(servicesData,4)
     page_number = request.GET.get('page')
     servicesDatafinal = paginator.get_page(page_number)
+    totalPage=servicesDatafinal.paginator.num_pages
 
 
-    if request.method == "GET":
-        st=request.GET.get('servicename')
-        if st!=None:
-            servicesData = Service.objects.filter(service_title__icontains=st)
+    # if request.method == "GET":
+    #     st=request.GET.get('servicename')
+    #     if st!=None:
+    #         servicesData = Service.objects.filter(service_title__icontains=st)
             
     # for a in servicesData:
     #     print(a.service_icon)
     # print(Service)
     data = {
         'serviceData':servicesDatafinal,
-        'newsData':newsData
+        'lastpage':totalPage,
+        'newsData':newsData,
+        'totalPagelist':[n+1 for n in range(totalPage)]
     }
 
     
@@ -69,6 +85,20 @@ def newDetails(request,slug):
             'newsDetails' :newsDetails
         }
         return render(request,"calculator.html",data)
+
+def Imageuploader(request):
+    if request.method=="POST":
+        form=ImageForm(request.POST,request.FILES)
+        if form.is_valid():
+            form.save()
+    form = ImageForm()
+    img=Image.objects.all()
+    data = {
+        'form':form,
+        'img':img
+    }
+    return render(request,"image-uploader.html",data)
+
 
 
 def userForm(request):
@@ -112,6 +142,7 @@ def evenodd(request):
 
 
 def calculator(request):
+   
     output = ""
     data = {}
     try:

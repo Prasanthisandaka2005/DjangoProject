@@ -7,7 +7,7 @@ class Service(models.Model):
         ('regional','regional'),
 
     )
-    service_icon = models.CharField(max_length=150)
+    service_icon = models.CharField(max_length=250)
     service_title = models.CharField(max_length=50,choices = TYPE)
     service_des = models.TextField()
 

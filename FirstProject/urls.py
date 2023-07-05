@@ -16,6 +16,8 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from FirstProject import views
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -29,7 +31,13 @@ urlpatterns = [
     path('',views.signupview,name='signup'),
     path('login',views.Login,name='login'),
     path('newDetails/<slug>',views.newDetails),
+    path('Images',views.Imageuploader,name='uploader'),
+
 
     # path('next',views.Next,name='next'),
 
 ]
+print(static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT))
+
+if settings.DEBUG:
+    urlpatterns+=static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
